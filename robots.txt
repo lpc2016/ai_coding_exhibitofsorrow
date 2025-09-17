@@ -9,7 +9,7 @@ Allow: /
 # Disallow: /private/
 
 # 站点地图位置
-Sitemap: https://exhibitofsorrows.app/sitemap.xml
+Sitemap: https://agentcoding.top/sitemap.xml
 
 # 爬取延迟（可选，避免服务器过载）
 Crawl-delay: 1
