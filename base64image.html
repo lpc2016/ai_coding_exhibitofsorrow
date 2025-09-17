@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1643ZKLXJJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-1643ZKLXJJ');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2312270896295745"
+         crossorigin="anonymous"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Image Converter | Free Online Tool - AgentCoding</title>
+    <meta name="description" content="Free online base64 image converter tool. Convert images to base64 encoding and decode base64 to images. Support JPG, PNG, GIF formats. Fast and secure.">
+    <meta name="keywords" content="base64 converter,image to base64,base64 to image,online converter,free tool,image encoder,base64 decoder,web tool">
+    <meta name="author" content="AgentCoding Team">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="en">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://agentcoding.top/base64image.html">
+    <meta property="og:title" content="Base64 Image Converter | Free Online Tool">
+    <meta property="og:description" content="Free online base64 image converter tool. Convert images to base64 encoding and decode base64 to images instantly.">
+    <meta property="og:site_name" content="AgentCoding">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://agentcoding.top/base64image.html">
+    <meta property="twitter:title" content="Base64 Image Converter | Free Online Tool">
+    <meta property="twitter:description" content="Free online base64 image converter tool. Convert images to base64 encoding and decode base64 to images instantly.">
+    
+    <!-- SEO and other meta tags -->
+    <link rel="canonical" href="https://agentcoding.top/base64image.html">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Base64 Image Converter",
+        "url": "https://agentcoding.top/base64image.html",
+        "description": "Free online tool to convert images to base64 encoding and decode base64 to images",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "AgentCoding"
+        }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .section {
+            padding: 40px;
+            border-right: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-right: none;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+        }
+
+        .preview {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .section:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖼️ Base64 Image Converter - Free Online Tool</h1>
+            <p>Convert images to base64 encoding and decode base64 to images instantly. Fast, secure, and completely free base64 converter tool.</p>
+        </div>
+        
+        <div class="content">
+            <!-- 图片转Base64 -->
+            <div class="section">
+                <h2>
+                    <span class="icon">📷</span>
+                    Image to Base64 Converter
+                </h2>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-text">
+                        Click to select image or drag image here for base64 conversion<br>
+                        <small>Supports JPG, PNG, GIF, WebP formats for base64 encoding</small>
+                    </div>
+                    <input type="file" id="imageInput" class="file-input" accept="image/*">
+                </div>
+                
+                <textarea id="base64Output" class="textarea" placeholder="Base64 encoded string will appear here..." readonly></textarea>
+                
+                <button class="btn" onclick="copyBase64()">📋 Copy Base64 Code</button>
+                <button class="btn btn-secondary" onclick="clearImageSection()">🗑️ Clear</button>
+                
+                <div id="imagePreview" class="preview"></div>
+                <div id="imageInfo" class="info" style="display: none;"></div>
+            </div>
+            
+            <!-- Base64转图片 -->
+            <div class="section">
+                <h2>
+                    <span class="icon">🔄</span>
+                    Base64 to Image Decoder
+                </h2>
+                
+                <textarea id="base64Input" class="textarea" placeholder="Paste your Base64 encoded string here...\nSupports data:image prefix or pure Base64 strings"></textarea>
+                
+                <button class="btn" onclick="convertBase64ToImage()">🖼️ Convert to Image</button>
+                <button class="btn" onclick="downloadImage()">💾 Download Image</button>
+                <button class="btn btn-secondary" onclick="clearBase64Section()">🗑️ Clear</button>
+                
+                <div id="base64Preview" class="preview"></div>
+                <div id="base64Info" class="info" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentImageData = null;
+        let convertedImageData = null;
+
+        // 图片转Base64相关功能
+        const uploadArea = document.getElementById('uploadArea');
+        const imageInput = document.getElementById('imageInput');
+        const base64Output = document.getElementById('base64Output');
+        const imagePreview = document.getElementById('imagePreview');
+        const imageInfo = document.getElementById('imageInfo');
+
+        // Base64转图片相关功能
+        const base64Input = document.getElementById('base64Input');
+        const base64Preview = document.getElementById('base64Preview');
+        const base64Info = document.getElementById('base64Info');
+
+        // 点击上传区域触发文件选择
+        uploadArea.addEventListener('click', () => {
+            imageInput.click();
+        });
+
+        // 文件选择事件
+        imageInput.addEventListener('change', handleImageSelect);
+
+        // 拖拽功能
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type.startsWith('image/')) {
+                handleImageFile(files[0]);
+            }
+        });
+
+        function handleImageSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                handleImageFile(file);
+            }
+        }
+
+        function handleImageFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('请选择有效的图片文件！');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+                currentImageData = base64;
+                
+                // 显示Base64编码
+                base64Output.value = base64;
+                
+                // 显示图片预览
+                showImagePreview(base64, file);
+                
+                // 显示文件信息
+                showImageInfo(file, base64);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showImagePreview(base64, file) {
+            imagePreview.innerHTML = `<img src="${base64}" alt="预览图片">`;
+        }
+
+        function showImageInfo(file, base64) {
+            const sizeKB = (file.size / 1024).toFixed(2);
+            const base64Size = (base64.length * 0.75 / 1024).toFixed(2); // Base64大小估算
+            
+            imageInfo.innerHTML = `
+                <strong>文件信息：</strong><br>
+                文件名：${file.name}<br>
+                文件类型：${file.type}<br>
+                文件大小：${sizeKB} KB<br>
+                Base64大小：${base64Size} KB<br>
+                Base64长度：${base64.length.toLocaleString()} 字符
+            `;
+            imageInfo.style.display = 'block';
+        }
+
+        function copyBase64() {
+            if (!base64Output.value) {
+                alert('没有可复制的Base64编码！');
+                return;
+            }
+            
+            base64Output.select();
+            document.execCommand('copy');
+            
+            // 临时改变按钮文字
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✅ 已复制';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        }
+
+        function clearImageSection() {
+            imageInput.value = '';
+            base64Output.value = '';
+            imagePreview.innerHTML = '';
+            imageInfo.style.display = 'none';
+            currentImageData = null;
+        }
+
+        // Base64转图片功能
+        function convertBase64ToImage() {
+            const base64 = base64Input.value.trim();
+            
+            if (!base64) {
+                alert('请输入Base64编码！');
+                return;
+            }
+            
+            try {
+                // 处理Base64字符串
+                let processedBase64 = base64;
+                
+                // 如果不包含data:image前缀，尝试添加
+                if (!base64.startsWith('data:image/')) {
+                    // 尝试检测图片类型
+                    const firstChars = base64.substring(0, 10);
+                    let mimeType = 'image/png'; // 默认PNG
+                    
+                    if (firstChars.startsWith('/9j/')) {
+                        mimeType = 'image/jpeg';
+                    } else if (firstChars.startsWith('iVBORw0KGgo')) {
+                        mimeType = 'image/png';
+                    } else if (firstChars.startsWith('R0lGOD')) {
+                        mimeType = 'image/gif';
+                    }
+                    
+                    processedBase64 = `data:${mimeType};base64,${base64}`;
+                }
+                
+                // 创建图片元素测试Base64是否有效
+                const img = new Image();
+                img.onload = function() {
+                    convertedImageData = processedBase64;
+                    showBase64Preview(processedBase64);
+                    showBase64Info(processedBase64);
+                };
+                img.onerror = function() {
+                    alert('无效的Base64编码，无法转换为图片！');
+                };
+                img.src = processedBase64;
+                
+            } catch (error) {
+                alert('Base64编码格式错误！');
+            }
+        }
+
+        function showBase64Preview(base64) {
+            base64Preview.innerHTML = `<img src="${base64}" alt="转换后的图片">`;
+        }
+
+        function showBase64Info(base64) {
+            const base64Size = (base64.length * 0.75 / 1024).toFixed(2);
+            const mimeMatch = base64.match(/data:image\/(\w+);/);
+            const imageType = mimeMatch ? mimeMatch[1].toUpperCase() : '未知';
+            
+            base64Info.innerHTML = `
+                <strong>转换信息：</strong><br>
+                图片类型：${imageType}<br>
+                Base64长度：${base64.length.toLocaleString()} 字符<br>
+                估算文件大小：${base64Size} KB
+            `;
+            base64Info.style.display = 'block';
+        }
+
+        function downloadImage() {
+            if (!convertedImageData) {
+                alert('请先转换Base64为图片！');
+                return;
+            }
+            
+            // 获取图片类型
+            const mimeMatch = convertedImageData.match(/data:image\/(\w+);/);
+            const extension = mimeMatch ? mimeMatch[1] : 'png';
+            
+            // 创建下载链接
+            const link = document.createElement('a');
+            link.href = convertedImageData;
+            link.download = `converted_image_${Date.now()}.${extension}`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function clearBase64Section() {
+            base64Input.value = '';
+            base64Preview.innerHTML = '';
+            base64Info.style.display = 'none';
+            convertedImageData = null;
+        }
+
+        // 自动调整textarea高度
+        base64Output.addEventListener('input', autoResize);
+        base64Input.addEventListener('input', autoResize);
+
+        function autoResize(e) {
+            e.target.style.height = 'auto';
+            e.target.style.height = Math.max(150, e.target.scrollHeight) + 'px';
+        }
+    </script>
+    
+    <!-- Footer -->
+    <footer style="background: #f8f9fa; padding: 40px 20px; margin-top: 40px; border-top: 1px solid #eee;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">Base64 Image Converter</h3>
+                <p style="color: #666; font-size: 14px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+                    A free online base64 image converter tool that helps you convert images to base64 encoding and decode base64 strings back to images. 
+                    This base64 converter supports multiple image formats including JPG, PNG, GIF, and WebP. 
+                    Our base64 image converter is fast, secure, and works entirely in your browser without uploading files to any server.
+                </p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h4 style="color: #333; margin-bottom: 10px; font-size: 1rem;">Features of Our Base64 Converter</h4>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 20px;">
+                    <span style="background: #667eea; color: white; padding: 5px 15px; border-radius: 15px; font-size: 12px;">🔒 Secure & Private</span>
+                    <span style="background: #667eea; color: white; padding: 5px 15px; border-radius: 15px; font-size: 12px;">⚡ Fast Conversion</span>
+                    <span style="background: #667eea; color: white; padding: 5px 15px; border-radius: 15px; font-size: 12px;">📱 Mobile Friendly</span>
+                    <span style="background: #667eea; color: white; padding: 5px 15px; border-radius: 15px; font-size: 12px;">🆓 Completely Free</span>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h4 style="color: #333; margin-bottom: 10px; font-size: 1rem;">How to Use Base64 Image Converter</h4>
+                <p style="color: #666; font-size: 14px; line-height: 1.6; max-width: 800px; margin: 0 auto;">
+                    To convert image to base64: Simply drag and drop your image file or click to select an image. 
+                    The base64 converter will instantly generate the base64 encoded string. 
+                    To convert base64 to image: Paste your base64 string into the text area and click convert. 
+                    Our base64 image converter will display the decoded image and allow you to download it.
+                </p>
+            </div>
+            
+            <div style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 30px;">
+                <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <a href="privacy.html" style="color: #667eea; text-decoration: none; font-size: 14px;">Privacy Policy</a>
+                    <a href="terms.html" style="color: #667eea; text-decoration: none; font-size: 14px;">Terms of Service</a>
+                    <a href="index.html" style="color: #667eea; text-decoration: none; font-size: 14px;">Home</a>
+                </div>
+                <p style="color: #999; font-size: 12px; margin: 0;">
+                    &copy; 2025 AgentCoding.top - Free Base64 Image Converter Tool. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
