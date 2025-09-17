@@ -1,0 +1,589 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #e0e0e0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 导航栏样式 */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #64b5f6;
+    text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #64b5f6;
+    transform: translateY(-2px);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #64b5f6, #42a5f5);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #e0e0e0;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* 主要内容区域 */
+.main-content {
+    margin-top: 80px;
+}
+
+
+
+/* 游戏区域 */
+.game-section {
+    padding: 0;
+    background: rgba(0, 0, 0, 0.2);
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.game-frame-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: calc(100vh - 160px);
+    min-height: 600px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    background: #000;
+}
+
+#game-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 46, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(100, 181, 246, 0.3);
+    border-top: 3px solid #64b5f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 关于游戏区域 */
+.about-section {
+    padding: 4rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.about-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #64b5f6;
+    text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #b0bec5;
+}
+
+.about-features h3 {
+    color: #64b5f6;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.about-features ul {
+    list-style: none;
+}
+
+.about-features li {
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+    color: #b0bec5;
+    border-bottom: 1px solid rgba(100, 181, 246, 0.1);
+    transition: all 0.3s ease;
+}
+
+.about-features li:hover {
+    color: #64b5f6;
+    transform: translateX(10px);
+}
+
+/* 操作说明区域 */
+.controls-section {
+    padding: 4rem 2rem;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.controls-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.controls-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #64b5f6;
+    text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.control-item {
+    background: rgba(100, 181, 246, 0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(100, 181, 246, 0.1);
+    transition: all 0.3s ease;
+}
+
+.control-item:hover {
+    transform: translateY(-5px);
+    background: rgba(100, 181, 246, 0.1);
+    box-shadow: 0 10px 30px rgba(100, 181, 246, 0.2);
+}
+
+.control-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.control-item h3 {
+    color: #64b5f6;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.control-item p {
+    color: #b0bec5;
+    line-height: 1.6;
+}
+
+.experience-guide {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(100, 181, 246, 0.05);
+    border-radius: 15px;
+    border-left: 4px solid #64b5f6;
+}
+
+.experience-guide h3 {
+    color: #64b5f6;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.experience-guide p {
+    color: #e0e0e0;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* 页脚 */
+.footer {
+    background: rgba(26, 26, 46, 0.9);
+    padding: 3rem 2rem 1rem;
+    border-top: 1px solid rgba(100, 181, 246, 0.1);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    color: #64b5f6;
+    margin-bottom: 1rem;
+}
+
+.footer-section p,
+.footer-section li {
+    color: #b0bec5;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section a {
+    color: #b0bec5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #64b5f6;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(100, 181, 246, 0.1);
+    color: #78909c;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .game-title {
+        font-size: 2.5rem;
+    }
+    
+    .game-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .game-frame-container {
+        height: calc(100vh - 140px);
+        min-height: 400px;
+    }
+    
+    .game-container {
+        padding: 1rem;
+    }
+    
+    .controls-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-content {
+        margin-top: 70px;
+    }
+    
+    .hero-section {
+        min-height: 60vh;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .game-title {
+        font-size: 2rem;
+    }
+    
+
+    
+    .game-frame-container {
+        height: calc(100vh - 120px);
+        min-height: 300px;
+    }
+    
+    .game-container {
+        padding: 0.5rem;
+    }
+    
+    .section {
+        padding: 2rem 1rem;
+    }
+}
+
+/* 全屏模式样式 */
+.fullscreen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    border-radius: 0 !important;
+}
+
+/* 法律页面样式 */
+.legal-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 15px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.legal-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid rgba(100, 181, 246, 0.2);
+}
+
+.legal-header h1 {
+    font-size: 2.5rem;
+    color: #64b5f6;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+}
+
+.last-updated {
+    color: #b0bec5;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.legal-content {
+    line-height: 1.8;
+}
+
+.legal-section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: rgba(100, 181, 246, 0.03);
+    border-radius: 10px;
+    border-left: 4px solid #64b5f6;
+}
+
+.legal-section h2 {
+    color: #64b5f6;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(100, 181, 246, 0.2);
+}
+
+.legal-section h3 {
+    color: #81c784;
+    font-size: 1.2rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.legal-section p {
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+}
+
+.legal-section ul,
+.legal-section ol {
+    color: #b0bec5;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.legal-section li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.legal-section a {
+    color: #64b5f6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.legal-section a:hover {
+    color: #42a5f5;
+    text-decoration: underline;
+}
+
+/* 导航链接激活状态 */
+.nav-link.active {
+    color: #64b5f6;
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* 响应式设计 - 法律页面 */
+@media (max-width: 768px) {
+    .legal-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+    
+    .legal-header h1 {
+        font-size: 2rem;
+    }
+    
+    .legal-section {
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .legal-section ul,
+    .legal-section ol {
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-container {
+        padding: 0.5rem;
+        margin: 0.5rem;
+    }
+    
+    .legal-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .legal-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .legal-section h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(26, 26, 46, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #64b5f6, #42a5f5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #42a5f5, #1e88e5);
+}
