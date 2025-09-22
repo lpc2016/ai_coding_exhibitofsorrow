@@ -240,30 +240,7 @@ function scrollToGame() {
     }
 }
 
-// 键盘快捷键支持
-document.addEventListener('keydown', function(e) {
-    // F11 - 切换全屏
-    if (e.key === 'F11') {
-        e.preventDefault();
-        const gameContainer = document.querySelector('.game-frame-container');
-        toggleFullscreen(gameContainer);
-    }
-    
-    // F5 - 重新加载游戏
-    if (e.key === 'F5' && e.ctrlKey) {
-        e.preventDefault();
-        reloadGame();
-    }
-    
-    // Escape - 退出全屏
-    if (e.key === 'Escape' && (document.fullscreenElement || document.webkitFullscreenElement)) {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        }
-    }
-});
+
 
 // 页面可见性API - 当页面不可见时暂停某些动画
 document.addEventListener('visibilitychange', function() {
