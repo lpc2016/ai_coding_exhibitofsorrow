@@ -299,12 +299,12 @@
             <!-- 上传区域 -->
             <div class="upload-section">
                 <h2 class="section-title">📁 上传图片</h2>
-                <div class="upload-area" id="uploadArea">
+                <div class="upload-area" id="uploadArea" onclick="triggerFileSelect()">
                     <div class="upload-icon">📷</div>
                     <div class="upload-text">点击或拖拽图片到此处</div>
                     <div class="upload-text">支持 JPG、PNG、GIF 格式</div>
                     <input type="file" id="fileInput" class="file-input" multiple accept="image/*">
-                    <button class="btn" onclick="document.getElementById('fileInput').click()">选择图片</button>
+                    <button class="btn" id="selectBtn" onclick="triggerFileSelect(); event.stopPropagation();">选择图片</button>
                 </div>
                 <div style="margin-top: 15px; text-align: center;">
                     <button class="btn btn-danger" onclick="clearAllImages()">清空所有图片</button>
@@ -416,6 +416,17 @@
         let uploadedImages = [];
         let processedImages = [];
 
+        // 全局点击选择文件函数
+        function triggerFileSelect() {
+            console.log('触发文件选择');
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput) {
+                fileInput.click();
+            } else {
+                console.error('找不到文件输入元素');
+            }
+        }
+
         // 显示状态消息
         function showStatus(message, type = 'success') {
             const statusDiv = document.getElementById('statusMessage');
@@ -437,11 +448,26 @@
                 return;
             }
 
+            // 选择图片按钮点击事件
+            const selectBtn = document.getElementById('selectBtn');
+            if (selectBtn) {
+                selectBtn.addEventListener('click', function(e) {
+                    console.log('点击选择按钮');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    fileInput.click();
+                });
+            }
+
             // 点击上传区域触发文件选择
             uploadArea.addEventListener('click', function(e) {
-                console.log('点击上传区域');
-                e.preventDefault();
-                e.stopPropagation();
+                console.log('点击上传区域，目标元素:', e.target);
+                // 如果点击的是按钮，不处理（按钮有自己的事件处理）
+                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                    console.log('点击的是按钮，跳过');
+                    return;
+                }
+                console.log('触发文件选择');
                 fileInput.click();
             });
 
